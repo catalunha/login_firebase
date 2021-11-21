@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "822455955112",
+    "project_id": "login-firebase-727bf",
+    "storage_bucket": "login-firebase-727bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822455955112:android:7cc5b7979cc3e106f71c9d",
+        "android_client_info": {
+          "package_name": "education.brintec.login_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822455955112-doi2rdqhjdqflv7m3sa7lhoqj3rl121i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "education.brintec.login_firebase",
+            "certificate_hash": "35898efbfbfa958a56085cceb57d93a0e8bd4cf7"
+          }
+        },
+        {
+          "client_id": "822455955112-bl4ffv5d1ctjic0vodb387kv7spdr3d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1Z9JZGNCbDeXC4kJ3leS8NEpggzHF1Q0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822455955112-bl4ffv5d1ctjic0vodb387kv7spdr3d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

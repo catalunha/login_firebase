@@ -1,0 +1,74 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+import 'package:login_firebase/app/data/model/user_model.dart';
+import 'package:flutter/material.dart';
+
+class AuthProvider {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Stream<UserModel?> get onAuthStateChanged =>
+      _firebaseAuth.authStateChanges().map((firebaseuser) {
+        if (firebaseuser != null) {
+          Map<String, dynamic> googleUser = {};
+          googleUser['id'] = firebaseuser.uid;
+          googleUser['uid'] = firebaseuser.uid;
+          googleUser['displayName'] = firebaseuser.displayName;
+          googleUser['photoURL'] = firebaseuser.photoURL;
+          googleUser['email'] = firebaseuser.email;
+          googleUser['isActive'] = true;
+          googleUser['accessType'] = ['student'];
+          return UserModel.fromMap(googleUser);
+        } else {
+          print('firebaseuser é null');
+        }
+      });
+
+  Future<UserModel?> createUserModelWithEmailAndPassword(
+      String email, String password, String name) async {
+    try {
+      final currentUser = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      // var userModelUpdateInfo = UserModelUpdateInfo();
+      // userModelUpdateInfo.displayName = name;
+      // currentUser.user!.updatePhotoURL(userModelUpdateInfo.photoURL);
+      currentUser.user!.updateDisplayName(name);
+      Map<String, dynamic> googleUser = {};
+
+      googleUser['id'] = currentUser.user!.uid;
+      googleUser['uid'] = currentUser.user!.uid;
+      googleUser['displayName'] = currentUser.user!.displayName;
+      googleUser['photoURL'] = currentUser.user!.photoURL;
+      googleUser['email'] = currentUser.user!.email;
+      googleUser['isActive'] = true;
+      googleUser['accessType'] = ['student'];
+      return UserModel.fromMap(googleUser);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<UserModel?> signInWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      final currentUser = await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      Map<String, dynamic> googleUser = {};
+      googleUser['id'] = currentUser.user!.uid;
+      googleUser['uid'] = currentUser.user!.uid;
+      googleUser['displayName'] = currentUser.user!.displayName;
+      googleUser['photoURL'] = currentUser.user!.photoURL;
+      googleUser['email'] = currentUser.user!.email;
+      googleUser['isActive'] = true;
+      googleUser['accessType'] = ['student'];
+      return UserModel.fromMap(googleUser);
+    } catch (e) {
+      Get.back();
+      Get.defaultDialog(
+          title: 'Erro em signInWithEmailAndPassword',
+          content: const Text('Erro em signInWithEmailAndPassword'));
+    }
+  }
+
+  signOut() {
+    return _firebaseAuth.signOut();
+  }
+}
