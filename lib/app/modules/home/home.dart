@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home page'),
+        title: Text('homePage_title'.tr),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,6 +58,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   print("Idioma: pt_BR");
+                  Get.updateLocale(const Locale('pt', 'BR'));
                 },
                 child: const Center(
                   child: Text(
@@ -73,6 +74,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   print("Idioma: en_US");
+                  Get.updateLocale(const Locale('en', 'US'));
                 },
                 child: const Center(
                   child: Text(

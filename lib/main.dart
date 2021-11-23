@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:login_firebase/app/translation/app_translations.dart';
 
 import 'app/routes/routes.dart';
 import 'app/theme/app_theme.dart';
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       getPages: RoutesPages.pageList,
       initialRoute: RoutesPaths.splash,
+      locale: const Locale('pt', 'BR'),
+      translationsKeys: AppTranslations.translations,
     );
   }
 }
