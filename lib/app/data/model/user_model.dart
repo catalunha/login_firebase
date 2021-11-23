@@ -65,7 +65,7 @@ class UserModel {
     };
   }
 
-  factory UserModel.fromJson(String id, String source) =>
+  factory UserModel.fromJson(String source) =>
       UserModel.fromMap(json.decode(source));
 
   String toJson() => json.encode(toMap());

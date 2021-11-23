@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_firebase/app/modules/login/login_controller.dart';
-import 'package:login_firebase/app/routes/app_routes.dart';
+import 'package:login_firebase/app/routes/routes.dart';
 import 'package:login_firebase/app/theme/app_images.dart';
 
 class LoginPage extends StatelessWidget {
@@ -109,7 +109,7 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(color: Colors.black),
                 ),
                 onPressed: () {
-                  Get.toNamed(Routes.register);
+                  Get.toNamed(RoutesPaths.register);
                 },
               )
             ],

@@ -1,14 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_firebase/app/routes/app_pages.dart';
+import 'package:get_storage/get_storage.dart';
 
-import 'app/routes/app_routes.dart';
+import 'app/routes/routes.dart';
 import 'app/theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await GetStorage.init('login_firebase');
   runApp(const MyApp());
 }
 
@@ -20,9 +21,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Login Firebase',
-      theme: appThemeDataDark,
-      getPages: AppPages.routes,
-      initialRoute: Routes.splash,
+      theme: appThemeDataLight,
+      darkTheme: appThemeDataDark,
+      themeMode: ThemeMode.system,
+      getPages: RoutesPages.pageList,
+      initialRoute: RoutesPaths.splash,
     );
   }
 }

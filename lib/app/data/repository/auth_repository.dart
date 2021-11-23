@@ -15,4 +15,8 @@ class AuthRepository {
   Future<UserModel?> signInWithEmailAndPassword(String email, String password) {
     return provider.signInWithEmailAndPassword(email, password);
   }
+
+  signOut() {
+    provider.signOut();
+  }
 }

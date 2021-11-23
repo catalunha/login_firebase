@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:login_firebase/app/data/model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  GetStorage box = GetStorage('login_firebase');
+
   Stream<UserModel?> get onAuthStateChanged =>
       _firebaseAuth.authStateChanges().map((firebaseuser) {
         if (firebaseuser != null) {
@@ -42,7 +45,12 @@ class AuthProvider {
       googleUser['accessType'] = ['student'];
       return UserModel.fromMap(googleUser);
     } catch (e) {
-      print(e);
+      // print(e);
+      Get.back();
+      Get.defaultDialog(
+        title: 'Erro em createUserModelWithEmailAndPassword',
+        content: const Text('Erro em createUserModelWithEmailAndPassword'),
+      );
     }
   }
 
@@ -69,6 +77,7 @@ class AuthProvider {
   }
 
   signOut() {
+    box.write('auth', null);
     return _firebaseAuth.signOut();
   }
 }

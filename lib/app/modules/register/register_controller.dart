@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:login_firebase/app/data/model/user_model.dart';
 import 'package:login_firebase/app/data/repository/auth_repository.dart';
-import 'package:login_firebase/app/routes/app_routes.dart';
+import 'package:login_firebase/app/routes/routes.dart';
 
 class RegisterController extends GetxController {
   // final LoginRepository repository = LoginRepository();
@@ -15,6 +16,7 @@ class RegisterController extends GetxController {
       TextEditingController();
   final TextEditingController nameTextEditingController =
       TextEditingController();
+  GetStorage box = GetStorage('login_firebase');
 
   void register() async {
     UserModel? userModel = await repository.createUserModelWithEmailAndPassword(
@@ -22,13 +24,14 @@ class RegisterController extends GetxController {
         passwordTextEditingController.text,
         nameTextEditingController.text);
     if (userModel != null) {
+      box.write('auth', userModel.toJson());
       onUserIsLogged(userModel);
     }
   }
 
   void onUserIsLogged(UserModel userModel) {
     Get.offAllNamed(
-      Routes.home,
+      RoutesPaths.home,
       arguments: userModel,
     );
   }
